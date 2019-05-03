@@ -1,0 +1,18 @@
+<project
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.logsense.examples</groupId>
+    <artifactId>java-tracing</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>LogSense Java Tracing example</name>
+    <description>Java Agent for OpenTracing, with automatic instrumentation</description>
+    <modules>
+        <module>common</module>
+        <module>service-a</module>
+        <module>service-b</module>
+        <module>service-c</module>
+    </modules>
+</project>
