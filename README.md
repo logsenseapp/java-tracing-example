@@ -1,4 +1,4 @@
-= Java Tracing Example
+# Java Tracing Example
 
 The project provides an example of distributed tracing using LogSense. The system contains out of three services:
 
@@ -14,7 +14,7 @@ Each of the services responds to any resource name provided within it's path.
 `service-c` takes more time to respond if `foo` was provided as the `message` parameter to `service-a`.
 
 
-== Running
+## Running
 
 
 Each of the services needs to have instrumentation set. JVM needs to have following properties provided:
