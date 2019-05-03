@@ -24,7 +24,7 @@ Each of the services needs to have instrumentation set. JVM needs to have follow
 
 ```
 
-The recent version of agent might be pulled from: https://github.com/collectivesense/logsense-opentracing-agent/releases/download/v1.1.1/logsense-opentracing-agent-1.1.1.jar
+The recent version of agent might be pulled from: https://github.com/logsenseapp/logsense-opentracing-agent/releases/download/v1.1.1/logsense-opentracing-agent-1.1.1.jar
 
 `service-a` might be called via e.g.:
 
