@@ -40,7 +40,7 @@ public class HttpPostRequestBuilder {
     }
 
     private String url() {
-        return "http://localhost:" + service.getPort() + '/' + service.getPath() + "/some-resource";
+        return "http://localhost:" + service.getPort() + service.getPath() + "/some-resource";
     }
 
     public String build() {
@@ -59,7 +59,7 @@ public class HttpPostRequestBuilder {
 
             HttpResponse response = client.execute(post);
 
-            logger.debug("Request with id {}: to: {} code: {}", id, url(), response.getStatusLine().getStatusCode());
+            logger.debug("Request with id {} to: {} code: {}", id, url(), response.getStatusLine().getStatusCode());
 
             BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 
