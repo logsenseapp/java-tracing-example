@@ -1,7 +1,11 @@
 package com.logsense.examples;
 
+import com.hazelcast.config.Config;
+import com.hazelcast.core.Hazelcast;
+import com.hazelcast.core.HazelcastInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sun.util.logging.resources.logging;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -10,16 +14,50 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 import java.util.Random;
 
 public class CharlieServlet extends HttpServlet {
     final Logger logger = LoggerFactory.getLogger(CharlieServlet.class);
     final Random r = new Random();
 
+    private HazelcastInstance instance;
 
     @Override
     public void init(final ServletConfig config) throws ServletException {
         super.init(config);
+
+        Config cfg = new Config();
+        instance = Hazelcast.newHazelcastInstance(cfg);
+    }
+
+    private int complexCalculation(String id) {
+        logger.info("Doing complex calculations for request with id: {}", id);
+        try {
+            Thread.sleep(200+r.nextInt(1000));
+        } catch (InterruptedException e) {
+            logger.debug("Sleep failed", e);
+        }
+        return r.nextInt(100000);
+    }
+
+    private int cachedCalculationMaybe(String id, String payload) {
+        Map<String, Integer> cachedCalculation = instance.getMap("complex-results");
+        if (cachedCalculation.containsKey(payload)) {
+            logger.info("Found cached value for payload: {}", payload);
+            return cachedCalculation.get(payload);
+        } else {
+            int value = complexCalculation(id);
+            cachedCalculation.put(payload, value);
+            logger.info("Stored cached value for payload: {}", payload);
+            return value;
+        }
+    }
+
+    private void invalidateCache() {
+        logger.info("Cleaning cache");
+        Map<String, Integer> cachedCalculation = instance.getMap("complex-results");
+        cachedCalculation.clear();
     }
 
     @Override
@@ -31,14 +69,9 @@ public class CharlieServlet extends HttpServlet {
 
         if ("foo".equals(payload)) {
             // Some very complex calculations needed
-            try {
-                logger.info("Doing complex calculations for request with id: {}", id);
-                Thread.sleep(200+r.nextInt(1000));
-                complexResult = r.nextInt(100000);
-            } catch (InterruptedException e) {
-                logger.debug("Sleep failed", e);
-            }
+            complexResult = cachedCalculationMaybe(id, payload);
         } else {
+            invalidateCache();
             complexResult = 42;
         }
 

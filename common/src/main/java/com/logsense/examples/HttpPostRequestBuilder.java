@@ -44,9 +44,12 @@ public class HttpPostRequestBuilder {
     }
 
     public String build() {
+        String url = url();
+
         try {
             HttpClient client = HttpClientBuilder.create().build();
-            HttpPost post = new HttpPost(url());
+
+            HttpPost post = new HttpPost(url);
 
             // add header
             post.setHeader("User-Agent", USER_AGENT);
@@ -59,7 +62,7 @@ public class HttpPostRequestBuilder {
 
             HttpResponse response = client.execute(post);
 
-            logger.debug("Request with id {} to: {} code: {}", id, url(), response.getStatusLine().getStatusCode());
+            logger.debug("Request with id {} to: {} code: {}", id, url, response.getStatusLine().getStatusCode());
 
             BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 
@@ -71,7 +74,7 @@ public class HttpPostRequestBuilder {
 
             return result.toString();
         } catch (Exception ex) {
-            logger.error("Request to " + url() + " failed", ex);
+            logger.error("Request to " + url + " failed", ex);
             return null;
         }
     }

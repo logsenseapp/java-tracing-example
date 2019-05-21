@@ -3,7 +3,6 @@
 
     <!-- LogSense appender. Use the correct accessToken value, as provided by the LogSense app -->
     <appender name="LOGSENSE" class="com.logsense.logback.Appender" >
-        <useLocalIpAddress>true</useLocalIpAddress>
         <sourceName>java-tracing-example</sourceName>
     </appender>
 
