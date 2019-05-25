@@ -14,11 +14,15 @@
 
 	<description>Common libraries</description>
 
+	<properties>
+		<logsense.version>1.1.5</logsense.version>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.logsense</groupId>
 			<artifactId>logback-logsense</artifactId>
-			<version>1.1.1</version>
+			<version>${logsense.version}</version>
 		</dependency>
 
 		<dependency>

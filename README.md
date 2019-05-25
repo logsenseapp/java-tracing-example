@@ -22,11 +22,11 @@ queried for or
 Each of the services needs to have instrumentation set. JVM needs to have following properties provided:
 
 ```
- -Dsa.tracer=logsense -Dlogsense.token=<YOUR TRACING TOKEN> -javaagent:logsense-opentracing-agent-1.1.3.jar
+ -Dsa.tracer=logsense -Dlogsense.token=<YOUR TRACING TOKEN> -javaagent:logsense-opentracing-agent-1.1.5.jar
 
 ```
 
-The recent version of agent might be pulled from: https://github.com/logsenseapp/logsense-opentracing-agent/releases/download/v1.1.3/logsense-opentracing-agent-1.1.3.jar
+The recent version of agent might be pulled from: https://github.com/logsenseapp/logsense-opentracing-agent/releases/download/v1.1.5/logsense-opentracing-agent-1.1.5.jar
 
 `service-a` might be called via e.g.:
 
