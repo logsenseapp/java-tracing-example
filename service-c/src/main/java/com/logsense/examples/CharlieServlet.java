@@ -1,5 +1,6 @@
 package com.logsense.examples;
 
+import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.config.Config;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
@@ -22,13 +23,18 @@ public class CharlieServlet extends HttpServlet {
     final Random r = new Random();
 
     private HazelcastInstance instance;
+    private CharlieStorage storage;
 
     @Override
     public void init(final ServletConfig config) throws ServletException {
         super.init(config);
 
+        // It's odd but the purpose of that is to have HazelcastClient separately
         Config cfg = new Config();
-        instance = Hazelcast.newHazelcastInstance(cfg);
+        Hazelcast.newHazelcastInstance(cfg);
+
+        instance = HazelcastClient.newHazelcastClient();
+        storage = new CharlieStorage();
     }
 
     private int complexCalculation(String id) {
@@ -74,6 +80,8 @@ public class CharlieServlet extends HttpServlet {
             invalidateCache();
             complexResult = 42;
         }
+
+        storage.insertEntry(id, payload);
 
         PrintWriter writer = resp.getWriter();
         writer.write(Integer.toString(complexResult));

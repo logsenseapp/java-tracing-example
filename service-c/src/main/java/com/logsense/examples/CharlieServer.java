@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static io.undertow.servlet.Servlets.servlet;
 
 public class CharlieServer {
     private static List<Undertow> buildServers() {
@@ -26,6 +25,7 @@ public class CharlieServer {
     public static void main(final String[] args) {
         List<Undertow> servers = buildServers();
         ExecutorService executor = Executors.newFixedThreadPool(servers.size());
+
         for (Undertow u : servers) {
             executor.submit(() -> { u.start(); });
         }
