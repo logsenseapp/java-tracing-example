@@ -28,13 +28,18 @@ public class CharlieStorage {
 
         }
 
-        @Override
-        public void onRegister(Cluster cluster) {
+//        @Override
+//        public void onRegister(Cluster cluster) {
+//
+//        }
+//
+//        @Override
+//        public void onUnregister(Cluster cluster) {
+//
+//        }
 
-        }
-
         @Override
-        public void onUnregister(Cluster cluster) {
+        public void onSuspected(Host host) {
 
         }
     }

@@ -33,11 +33,17 @@
 			<version>3.11.2</version>
 		</dependency>
 
+<!--		<dependency>-->
+<!--			<groupId>com.datastax.cassandra</groupId>-->
+<!--			<artifactId>cassandra-driver-core</artifactId>-->
+<!--			<version>3.7.1</version>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>com.datastax.cassandra</groupId>
 			<artifactId>cassandra-driver-core</artifactId>
-			<version>3.7.1</version>
+			<version>2.1.10.2</version>
 		</dependency>
+
 
 	</dependencies>
 
