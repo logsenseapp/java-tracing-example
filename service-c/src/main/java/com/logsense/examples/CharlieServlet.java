@@ -41,6 +41,10 @@ public class CharlieServlet extends HttpServlet {
         logger.info("Doing complex calculations for request with id: {}", id);
         try {
             Thread.sleep(200+r.nextInt(1000));
+            if (r.nextInt(13) == 0) {
+                logger.info("Extended iterations required by a request with id: {}", id);
+                Thread.sleep(4000 + r.nextInt(6000));
+            }
         } catch (InterruptedException e) {
             logger.debug("Sleep failed", e);
         }
@@ -73,13 +77,24 @@ public class CharlieServlet extends HttpServlet {
 
         int complexResult=0;
 
+        long t0 = System.currentTimeMillis();
+
         if ("foo".equals(payload)) {
             // Some very complex calculations needed
             complexResult = cachedCalculationMaybe(id, payload);
         } else {
+            try {
+                Thread.sleep(10+r.nextInt(10));
+            } catch (InterruptedException e) {
+                logger.debug("Sleep failed", e);
+            }
+
             invalidateCache();
-            complexResult = 42;
+            complexResult = r.nextInt(100);
         }
+
+        long t1 = System.currentTimeMillis();
+        logger.info("Overall execution duration for item: {} was: {} ms", payload, t1-t0);
 
         storage.insertEntry(id, payload);
 

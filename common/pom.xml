@@ -15,7 +15,7 @@
 	<description>Common libraries</description>
 
 	<properties>
-		<logsense.version>1.1.5</logsense.version>
+		<logsense.version>1.1.6</logsense.version>
 	</properties>
 
 	<dependencies>
