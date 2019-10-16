@@ -22,11 +22,13 @@ queried for or
 Each of the services needs to have instrumentation set. JVM needs to have following properties provided:
 
 ```
- -Dsa.tracer=logsense -Dlogsense.token=<YOUR TRACING TOKEN> -javaagent:logsense-opentracing-agent-1.1.5.jar
-
+ -Dsa.tracer=logsense -Dlogsense.token=<YOUR TRACING TOKEN> -javaagent:logsense-opentracing-agent-1.1.9.jar
 ```
 
-The recent version of agent might be pulled from: https://github.com/logsenseapp/logsense-opentracing-agent/releases/download/v1.1.5/logsense-opentracing-agent-1.1.5.jar
+The addresses of the services can be controlled via `HOSTB=...`, `HOSTC=...` environment variables. Since the flow of
+requests is `A->B->C`, `HOSTB` needs to be set on service A and `HOSTC` needs to be set on service B.
+
+The recent version of agent might be pulled from: https://github.com/logsenseapp/logsense-opentracing-agent/releases/download/v1.1.9/logsense-opentracing-agent-1.1.9.jar
 
 `service-a` might be called via e.g.:
 

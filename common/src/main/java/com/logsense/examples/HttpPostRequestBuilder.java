@@ -40,7 +40,7 @@ public class HttpPostRequestBuilder {
     }
 
     private String url() {
-        return "http://localhost:" + service.getPort() + service.getPath() + "/some-resource";
+        return "http://" + service.getHost() + ":" + service.getPort() + service.getPath() + "/some-resource";
     }
 
     public String build() {

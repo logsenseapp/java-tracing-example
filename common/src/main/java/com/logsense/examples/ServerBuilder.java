@@ -55,7 +55,7 @@ public class ServerBuilder {
             PathHandler path = Handlers.path(Handlers.redirect(contextPath))
                     .addPrefixPath(contextPath, servletHandler);
             Undertow server = Undertow.builder()
-                    .addHttpListener(port, "localhost")
+                    .addHttpListener(port, "0.0.0.0")
                     .setHandler(path)
                     .build();
 
