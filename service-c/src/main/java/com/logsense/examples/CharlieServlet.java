@@ -20,6 +20,7 @@ import java.util.Random;
 
 public class CharlieServlet extends HttpServlet {
     final Logger logger = LoggerFactory.getLogger(CharlieServlet.class);
+    final ComplexLogic logic = new ComplexLogic();
     final Random r = new Random();
 
     private HazelcastInstance instance;
@@ -38,17 +39,7 @@ public class CharlieServlet extends HttpServlet {
     }
 
     private int complexCalculation(String id) {
-        logger.info("Doing complex calculations for request with id: {}", id);
-        try {
-            Thread.sleep(200+r.nextInt(1000));
-            if (r.nextInt(13) == 0) {
-                logger.info("Extended iterations required by a request with id: {}", id);
-                Thread.sleep(4000 + r.nextInt(6000));
-            }
-        } catch (InterruptedException e) {
-            logger.debug("Sleep failed", e);
-        }
-        return r.nextInt(100000);
+        return logic.calculate(id);
     }
 
     private int cachedCalculationMaybe(String id, String payload) {
