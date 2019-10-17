@@ -22,7 +22,7 @@ queried for or
 Each of the services needs to have instrumentation set. JVM needs to have following properties provided:
 
 ```
- -Dsa.tracer=logsense -Dlogsense.token=<YOUR TRACING TOKEN> -javaagent:logsense-opentracing-agent-1.1.9.jar
+-Dlogsense.service.name=<NAME> -Dsa.tracer=logsense -Dlogsense.token=<YOUR TRACING TOKEN> -javaagent:logsense-opentracing-agent-1.1.9.jar
 ```
 
 The addresses of the services can be controlled via `HOSTB=...`, `HOSTC=...` environment variables. Since the flow of
