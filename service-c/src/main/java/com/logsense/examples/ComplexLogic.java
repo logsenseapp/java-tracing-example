@@ -8,7 +8,7 @@ import java.util.Random;
 public class ComplexLogic {
     final Logger logger = LoggerFactory.getLogger(CharlieServlet.class);
 
-    private Random r;
+    private Random r = new Random();
     private int state;
     private final static int t0 = 1571184000;
     private final static int attrs = 10;
