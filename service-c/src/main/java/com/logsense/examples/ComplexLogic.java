@@ -70,7 +70,7 @@ public class ComplexLogic {
 
     private int normalishCalculate(String input) {
         try {
-            Thread.sleep(200+r.nextInt(1000));
+            Thread.sleep(20+r.nextInt(200));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -94,7 +94,7 @@ public class ComplexLogic {
     }
 
     public int calculate(String input) {
-        if (r.nextInt(13) != 0) {
+        if (r.nextInt(37) != 0) {
             return this.normalishCalculate(input);
         } else {
             return this.complexishCalculate(input);
