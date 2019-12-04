@@ -15,6 +15,14 @@
         <module>service-b</module>
         <module>service-c</module>
     </modules>
+    <profiles>
+        <profile>
+            <id>dockerization</id>
+            <build>
+                <directory>/build</directory>
+            </build>
+        </profile>
+    </profiles>
     <build>
         <plugins>
             <plugin>
@@ -22,6 +30,8 @@
                 <configuration>
                     <archive>
                         <manifest>
+                            <mainClass>com.logsense.examples.AlphaServer</mainClass>
+                            <mainClass>com.logsense.examples.BravoServer</mainClass>
                             <mainClass>com.logsense.examples.CharlieServer</mainClass>
                         </manifest>
                     </archive>
